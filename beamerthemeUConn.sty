@@ -27,12 +27,14 @@
 %==============================================================================
 % Color definitions (UConn colors)
 %==============================================================================
-\definecolor{UConnNavy}{HTML}{000E2F}       % UConn Navy Blue (primary)
+\definecolor{UConnNavy}{HTML}{000E2F}       % UConn Navy Blue (PANTONE 289)
 \definecolor{UConnWhite}{HTML}{FFFFFF}      % White
-\definecolor{UConnLightGray}{HTML}{F5F5F5}  % Light gray background
-\definecolor{UConnBlack}{HTML}{222222}      % Near black for text
+\definecolor{UConnGray}{HTML}{7C878E}       % UConn Grey (PANTONE 430)
 \definecolor{UConnAccent}{HTML}{CC0000}     % Red accent color
-\definecolor{UConnGray}{HTML}{666666}       % Gray for secondary text
+\definecolor{UConnRoyalBlue}{HTML}{013ECD}  % UConn Royal Blue (PANTONE 2728)
+\definecolor{UConnDarkBlue}{HTML}{1A2959}   % Dark blue for title/closing slides
+\definecolor{UConnLightGray}{HTML}{F0F1F2}  % Light tint of UConn Grey (backgrounds)
+\definecolor{UConnBlack}{HTML}{222222}      % Near black for body text
 
 % Set beamer colors
 \setbeamercolor{normal text}{fg=UConnBlack,bg=UConnWhite}
@@ -58,7 +60,7 @@
 \setbeamercolor{framesubtitle}{fg=UConnGray}
 
 % Footer colors - navy background, white text
-\setbeamercolor{footline}{fg=UConnWhite,bg=UConnNavy}
+\setbeamercolor{footline}{fg=UConnWhite,bg=UConnDarkBlue}
 
 % Block colors
 \setbeamercolor{block title}{fg=UConnWhite,bg=UConnNavy}
@@ -122,8 +124,8 @@
 \defbeamertemplate*{title page}{UConn}[1][]
 {
   \begin{tikzpicture}[remember picture,overlay]
-    % Dark navy background
-    \fill[UConnNavy] (current page.south west) rectangle (current page.north east);
+    % Dark blue background
+    \fill[UConnDarkBlue] (current page.south west) rectangle (current page.north east);
 
     % Logo on white background rectangle flush to top-left corner
     \node[anchor=north west, fill=white, inner xsep=10pt, inner ysep=1pt, rounded corners=0pt]
@@ -236,7 +238,7 @@
 %==============================================================================
 \newcommand{\titleslide}{%
   \begingroup
-  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{background canvas}{bg=UConnDarkBlue}
   \begin{frame}[plain]
     \titlepage
   \end{frame}
@@ -266,7 +268,7 @@
 %==============================================================================
 \newcommand{\questionsslide}[1][]{%
   \begingroup
-  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{background canvas}{bg=UConnDarkBlue}
   \setbeamercolor{normal text}{fg=UConnWhite}
   \setbeamertemplate{footline}{}% no footer on closing slide
   \usebeamercolor[fg]{normal text}
@@ -300,7 +302,7 @@
 %==============================================================================
 \newcommand{\thankyouslide}[1][]{%
   \begingroup
-  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{background canvas}{bg=UConnDarkBlue}
   \setbeamercolor{normal text}{fg=UConnWhite}
   \setbeamertemplate{footline}{}% no footer on closing slide
   \usebeamercolor[fg]{normal text}
