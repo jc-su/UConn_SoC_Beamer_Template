@@ -1,0 +1,192 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+
+% Load the UConn theme
+\usetheme{UConn}
+
+% Optional: enable speaker notes on second screen
+% \setbeameroption{show notes on second screen=right}
+
+% Set the footer text and event
+\footlinetext{Example Presentation Using UConn Beamer Theme}
+\footlineevent{Event'26}
+
+% Presentation Metadata
+\title{Your Presentation Title\\Goes Here}
+\author{Author Name}
+\institute{University of Connecticut}
+\date{February 2026}
+
+\begin{document}
+
+%------------------------------------------------------------------------------
+% Title Slide (navy background with logo)
+%------------------------------------------------------------------------------
+\titleslide
+
+%------------------------------------------------------------------------------
+% Content Slide: Basic Layout
+%------------------------------------------------------------------------------
+\begin{frame}{Basic Content Slide}
+This is a standard content slide with the UConn theme.
+
+\begin{itemize}
+    \item First point with \textbf{bold text}
+    \item Second point with \accenttext{accent text} (red + bold)
+    \item Third point with \emphtext{emphasis text} (red only)
+\end{itemize}
+
+\vspace{0.5em}
+\alert{Alert text stands out like this.}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Two Columns
+%------------------------------------------------------------------------------
+\begin{frame}{Two-Column Layout}
+\begin{columns}[T]
+\column{0.48\textwidth}
+\textbf{Left Column}
+\begin{itemize}
+    \item Supports standard Beamer columns
+    \item Works well for text vs.\ figure layouts
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Right Column}
+\begin{enumerate}
+    \item Numbered items
+    \item Also supported
+    \item With UConn styling
+\end{enumerate}
+\end{columns}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Blocks
+%------------------------------------------------------------------------------
+\begin{frame}{Block Styles}
+\begin{block}{Standard Block}
+Navy header with light gray body. Used for definitions or key points.
+\end{block}
+
+\begin{alertblock}{Alert Block}
+Red header with light gray body. Used for warnings or important observations.
+\end{alertblock}
+
+\begin{exampleblock}{Example Block}
+Lighter navy header. Used for examples or demonstrations.
+\end{exampleblock}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Challenge/Key Idea Boxes
+%------------------------------------------------------------------------------
+\begin{frame}{Custom Box Environments}
+\begin{columns}[T]
+\column{0.48\textwidth}
+\begin{challengebox}
+\begin{itemize}
+    \item Describe the problem
+    \item Highlight constraints
+\end{itemize}
+\end{challengebox}
+
+\column{0.48\textwidth}
+\begin{keyideabox}[Solution:]
+\begin{itemize}
+    \item Describe your approach
+    \item Show the key insight
+\end{itemize}
+\end{keyideabox}
+\end{columns}
+
+\vspace{0.5em}
+Custom \texttt{challengebox} and \texttt{keyideabox} environments accept an optional title argument.
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Table
+%------------------------------------------------------------------------------
+\begin{frame}{Tables}
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Accuracy} & \textbf{Speed} & \textbf{Cost} \\
+\midrule
+Baseline    & 85.2\% & Slow   & Low \\
+Ours        & \accenttext{94.1\%} & Fast   & Low \\
+Oracle      & 96.0\% & N/A    & High \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: TikZ Diagram
+%------------------------------------------------------------------------------
+\begin{frame}{TikZ Diagrams}
+TikZ libraries are pre-loaded: \texttt{shapes.geometric}, \texttt{arrows.meta}, \texttt{positioning}, \texttt{decorations.pathreplacing}.
+
+\vspace{0.5em}
+\centering
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8},
+    box/.style={draw, rounded corners, minimum width=2.5cm, minimum height=0.6cm, align=center}]
+    \node[box, fill=UConnNavy!15] (a) at (0, 0) {Input};
+    \node[box, fill=green!30] (b) at (4, 0) {Processing};
+    \node[box, fill=UConnAccent!15] (c) at (8, 0) {Output};
+    \draw[->, thick, UConnNavy] (a) -- (b);
+    \draw[->, thick, UConnNavy] (b) -- (c);
+\end{tikzpicture}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Animations (Overlays)
+%------------------------------------------------------------------------------
+\begin{frame}{Step-by-Step Animations}
+\textbf{Content appears incrementally:}
+
+\begin{itemize}
+    \item This is always visible
+    \onslide<2->{\item This appears on click}
+    \onslide<3->{\item And this appears on the next click}
+\end{itemize}
+
+\onslide<3->{
+\begin{alertblock}{Revealed!}
+Use \texttt{\textbackslash onslide<n->} to control when content appears.
+\end{alertblock}
+}
+\end{frame}
+
+%------------------------------------------------------------------------------
+% Content Slide: Figures
+%------------------------------------------------------------------------------
+% \begin{frame}{Including Figures}
+% \begin{columns}[T]
+% \column{0.48\textwidth}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=\linewidth]{figures/your_figure.pdf}
+%     \caption{Left figure}
+% \end{figure}
+%
+% \column{0.48\textwidth}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=\linewidth]{figures/another_figure.pdf}
+%     \caption{Right figure}
+% \end{figure}
+% \end{columns}
+% \end{frame}
+
+%------------------------------------------------------------------------------
+% Thank You Slide (navy background with logo)
+%------------------------------------------------------------------------------
+\thankyouslide[Author Name \quad\texttt{author@uconn.edu}]
+
+\end{document}

@@ -1,0 +1,382 @@
+% beamerthemeUConn.sty
+% Beamer theme for University of Connecticut presentations
+% Design: Dark title/closing slides, light content slides with red accent underline,
+%         navy footer bar with logo | title | event
+%
+% Usage:
+%   \usetheme{UConn}
+%   \logo{\includegraphics[height=1cm]{uconn-logo_top.pdf}}
+%   \footlinelogo{\includegraphics[height=2.5ex]{uconn-logo_foot.pdf}}
+%   \footlinetext{Your presentation title}
+%   \footlineevent{Conference name}
+
+\mode<presentation>
+
+%==============================================================================
+% Required packages
+%==============================================================================
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{etoolbox}
+\RequirePackage{calc}
+
+% TikZ libraries (commonly used in presentation diagrams)
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, decorations.pathreplacing}
+
+%==============================================================================
+% Color definitions (UConn colors)
+%==============================================================================
+\definecolor{UConnNavy}{HTML}{000E2F}       % UConn Navy Blue (primary)
+\definecolor{UConnWhite}{HTML}{FFFFFF}      % White
+\definecolor{UConnLightGray}{HTML}{F5F5F5}  % Light gray background
+\definecolor{UConnBlack}{HTML}{222222}      % Near black for text
+\definecolor{UConnAccent}{HTML}{CC0000}     % Red accent color
+\definecolor{UConnGray}{HTML}{666666}       % Gray for secondary text
+
+% Set beamer colors
+\setbeamercolor{normal text}{fg=UConnBlack,bg=UConnWhite}
+\setbeamercolor{alerted text}{fg=UConnAccent}
+\setbeamercolor{example text}{fg=UConnNavy}
+
+\setbeamercolor{structure}{fg=UConnNavy}
+
+\setbeamercolor{palette primary}{fg=UConnWhite,bg=UConnNavy}
+\setbeamercolor{palette secondary}{fg=UConnNavy,bg=UConnWhite}
+\setbeamercolor{palette tertiary}{fg=UConnWhite,bg=UConnNavy}
+\setbeamercolor{palette quaternary}{fg=UConnWhite,bg=UConnNavy}
+
+% Title page colors
+\setbeamercolor{title}{fg=UConnWhite}
+\setbeamercolor{subtitle}{fg=UConnWhite}
+\setbeamercolor{author}{fg=UConnWhite}
+\setbeamercolor{institute}{fg=UConnWhite}
+\setbeamercolor{date}{fg=UConnWhite}
+
+% Frame title colors (for content slides)
+\setbeamercolor{frametitle}{fg=UConnBlack,bg=UConnWhite}
+\setbeamercolor{framesubtitle}{fg=UConnGray}
+
+% Footer colors - navy background, white text
+\setbeamercolor{footline}{fg=UConnWhite,bg=UConnNavy}
+
+% Block colors
+\setbeamercolor{block title}{fg=UConnWhite,bg=UConnNavy}
+\setbeamercolor{block body}{fg=UConnBlack,bg=UConnLightGray}
+\setbeamercolor{block title alerted}{fg=UConnWhite,bg=UConnAccent}
+\setbeamercolor{block body alerted}{fg=UConnBlack,bg=UConnLightGray}
+\setbeamercolor{block title example}{fg=UConnWhite,bg=UConnNavy!70}
+\setbeamercolor{block body example}{fg=UConnBlack,bg=UConnLightGray}
+
+% Item colors
+\setbeamercolor{itemize item}{fg=UConnBlack}
+\setbeamercolor{itemize subitem}{fg=UConnBlack}
+\setbeamercolor{itemize subsubitem}{fg=UConnBlack}
+\setbeamercolor{enumerate item}{fg=UConnBlack}
+\setbeamercolor{enumerate subitem}{fg=UConnBlack}
+
+%==============================================================================
+% Fonts
+%==============================================================================
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+
+%==============================================================================
+% Custom commands for footer
+%==============================================================================
+\newcommand{\footlinetext}[1]{\def\insertfootlinetext{#1}}
+\newcommand{\footlineevent}[1]{\def\insertfootlineevent{#1}}
+\newcommand{\footlinelogo}[1]{\def\insertfootlinelogo{#1}}
+
+% Default values
+\footlinetext{}
+\footlineevent{}
+\footlinelogo{}
+
+% Default UConn logos (override with \logo{} and \footlinelogo{} if needed)
+\logo{\includegraphics[height=1.5cm]{uconn-logo_top.pdf}}
+\footlinelogo{\includegraphics[height=2.5ex]{uconn-logo_foot.pdf}}
+
+%==============================================================================
+% Navigation symbols (hidden) and sidebar (suppress default logo placement)
+%==============================================================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{sidebar right}{}
+
+%==============================================================================
+% Item styles
+%==============================================================================
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+%==============================================================================
+% Title page template
+%==============================================================================
+\defbeamertemplate*{title page}{UConn}[1][]
+{
+  \begin{tikzpicture}[remember picture,overlay]
+    % Dark navy background
+    \fill[UConnNavy] (current page.south west) rectangle (current page.north east);
+
+    % Logo on white background rectangle flush to top-left corner
+    \node[anchor=north west, fill=white, inner xsep=10pt, inner ysep=1pt, rounded corners=0pt]
+      at ([xshift=0.8cm]current page.north west) {
+      \insertlogo
+    };
+  \end{tikzpicture}
+
+  \vspace{2.5cm}
+
+  % Title
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.8cm,rightskip=1cm]{title}
+    \usebeamerfont{title}\inserttitle\par
+    \ifx\insertsubtitle\@empty\else
+      \vskip0.4em
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+    \fi
+  \end{beamercolorbox}
+
+  % Red accent line
+  \vskip0.6em
+  \hspace{0.8cm}{\textcolor{UConnAccent}{\rule{2cm}{2.5pt}}}
+
+  % Author
+  \vskip0.8em
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.8cm,rightskip=1cm]{author}
+    \usebeamerfont{author}\insertauthor\par
+  \end{beamercolorbox}
+
+  % Institute
+  \vskip0.4em
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.8cm,rightskip=1cm]{institute}
+    \usebeamerfont{institute}\insertinstitute\par
+  \end{beamercolorbox}
+
+  % Date (if provided)
+  \ifx\insertdate\empty\else
+    \vskip0.3em
+    \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.8cm,rightskip=1cm]{date}
+      \usebeamerfont{date}\insertdate\par
+    \end{beamercolorbox}
+  \fi
+}
+
+%==============================================================================
+% Frame title template (for content slides)
+% Large bold title with red accent underline
+%==============================================================================
+\defbeamertemplate*{frametitle}{UConn}[1][]
+{
+  \vskip0.15cm
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5cm,rightskip=0.5cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+    \ifx\insertframesubtitle\@empty\else
+      \\[0.1em]
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}
+    \fi
+  \end{beamercolorbox}
+  \vskip-0.15cm
+  \hspace{0.5cm}{\textcolor{UConnAccent}{\rule{1.5cm}{2pt}}}
+  \vskip0.1cm
+}
+
+%==============================================================================
+% Footline template
+% Navy background bar: [logo] [title] [event]
+%==============================================================================
+\defbeamertemplate*{footline}{UConn}
+{
+  \leavevmode%
+  \hbox{%
+    % Left: logo
+    \begin{beamercolorbox}[wd=0.15\paperwidth,ht=2.8ex,dp=1ex,leftskip=0.3cm]{footline}%
+      \ifx\insertfootlinelogo\empty\else
+        \raisebox{-0.4ex}{\insertfootlinelogo}%
+      \fi
+    \end{beamercolorbox}%
+    % Center: title
+    \begin{beamercolorbox}[wd=0.6\paperwidth,ht=2.8ex,dp=1ex,center]{footline}%
+      \usebeamerfont{footline}\insertfootlinetext
+    \end{beamercolorbox}%
+    % Right: event
+    \begin{beamercolorbox}[wd=0.25\paperwidth,ht=2.8ex,dp=1ex,leftskip=0cm plus1fill,rightskip=0.5cm]{footline}%
+      \usebeamerfont{footline}\insertfootlineevent
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+%==============================================================================
+% Headline template
+%==============================================================================
+\defbeamertemplate*{headline}{UConn}
+{
+  % Empty by default - logo only on title/closing slides
+}
+
+%==============================================================================
+% Background template
+%==============================================================================
+\defbeamertemplate*{background}{UConn}
+{
+  % Default white background for content slides
+}
+
+%==============================================================================
+% Title slide command
+% Usage: \titleslide
+% Creates a plain frame with navy background and the title page template.
+%==============================================================================
+\newcommand{\titleslide}{%
+  \begingroup
+  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}
+  \endgroup
+}
+
+%==============================================================================
+% Dark frame environment
+%==============================================================================
+\newenvironment{darkframe}[1][]{%
+  \begingroup
+  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{normal text}{fg=UConnWhite}
+  \setbeamercolor{frametitle}{fg=UConnWhite,bg=UConnNavy}
+  \setbeamercolor{footline}{fg=UConnWhite!70,bg=UConnNavy}
+  \setbeamercolor{itemize item}{fg=UConnWhite}
+  \setbeamercolor{itemize subitem}{fg=UConnWhite}
+  \usebeamercolor[fg]{normal text}
+  \begin{frame}[environment=darkframe,#1]
+}{%
+  \end{frame}
+  \endgroup
+}
+
+%==============================================================================
+% Questions slide template
+%==============================================================================
+\newcommand{\questionsslide}[1][]{%
+  \begingroup
+  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{normal text}{fg=UConnWhite}
+  \setbeamertemplate{footline}{}% no footer on closing slide
+  \usebeamercolor[fg]{normal text}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north west, fill=white, inner xsep=10pt, inner ysep=1pt, rounded corners=0pt]
+        at ([xshift=0.8cm]current page.north west) {
+        \insertlogo
+      };
+    \end{tikzpicture}
+
+    \vspace{2.5cm}
+    \centering
+    {\Huge\bfseries\textcolor{UConnWhite}{Questions?}}
+
+    \vspace{0.5em}
+    \textcolor{UConnAccent}{\rule{2cm}{2.5pt}}
+
+    \vspace{1cm}
+
+    \ifx&#1&%
+    \else
+      {\normalsize\textcolor{UConnWhite}{#1}}
+    \fi
+  \end{frame}
+  \endgroup
+}
+
+%==============================================================================
+% Thank you slide template
+%==============================================================================
+\newcommand{\thankyouslide}[1][]{%
+  \begingroup
+  \setbeamercolor{background canvas}{bg=UConnNavy}
+  \setbeamercolor{normal text}{fg=UConnWhite}
+  \setbeamertemplate{footline}{}% no footer on closing slide
+  \usebeamercolor[fg]{normal text}
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north west, fill=white, inner xsep=10pt, inner ysep=1pt, rounded corners=0pt]
+        at ([xshift=0.8cm]current page.north west) {
+        \insertlogo
+      };
+    \end{tikzpicture}
+
+    \vspace{2.5cm}
+    \centering
+    {\Huge\bfseries\textcolor{UConnWhite}{Thank You!}}
+
+    \vspace{0.5em}
+    \textcolor{UConnAccent}{\rule{2cm}{2.5pt}}
+
+    \vspace{1cm}
+
+    \ifx&#1&%
+    \else
+      {\normalsize\textcolor{UConnWhite}{#1}}
+    \fi
+  \end{frame}
+  \endgroup
+}
+
+%==============================================================================
+% Accent text command
+%==============================================================================
+\newcommand{\accenttext}[1]{\textcolor{UConnAccent}{\textbf{#1}}}
+\newcommand{\emphtext}[1]{\textcolor{UConnAccent}{#1}}
+
+%==============================================================================
+% Two-column layout helpers
+%==============================================================================
+\newcommand{\twocolframe}[4][0.48]{%
+  \begin{frame}{#4}
+    \begin{columns}[T]
+      \begin{column}{#1\textwidth}
+        #2
+      \end{column}
+      \begin{column}{#1\textwidth}
+        #3
+      \end{column}
+    \end{columns}
+  \end{frame}
+}
+
+%==============================================================================
+% Highlighted box
+%==============================================================================
+\newcommand{\highlightbox}[2][UConnNavy]{%
+  \begin{beamercolorbox}[rounded=true,shadow=false,sep=0.5em]{block body}
+    \textcolor{#1}{\textbf{#2}}
+  \end{beamercolorbox}
+}
+
+%==============================================================================
+% Challenge/Key Idea box
+%==============================================================================
+\newenvironment{challengebox}[1][The Challenge:]{%
+  \begin{block}{\textcolor{UConnAccent}{#1}}
+}{%
+  \end{block}
+}
+
+\newenvironment{keyideabox}[1][Key Idea:]{%
+  \begin{block}{\textcolor{UConnAccent}{#1}}
+}{%
+  \end{block}
+}
+
+\mode<all>
+
+%==============================================================================
+% End of beamerthemeUConn.sty
+%==============================================================================
