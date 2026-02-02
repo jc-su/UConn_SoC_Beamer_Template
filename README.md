@@ -1,4 +1,4 @@
-# UConn Beamer Theme
+# UConn School of Computing Beamer Theme
 
 A custom Beamer theme for the University of Connecticut School of Computing. Features navy/white color scheme, red accent styling, and UConn branding.
 
@@ -134,7 +134,3 @@ pdflatex example.tex
 ```
 
 Requires a standard TeX Live or MiKTeX installation.
-
-## License
-
-Free to use for UConn School of Computing presentations.
