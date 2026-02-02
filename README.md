@@ -116,13 +116,16 @@ The theme pre-loads TikZ with libraries: `shapes.geometric`, `arrows.meta`, `pos
 
 ## Colors
 
-| Name | Hex | Usage |
-|------|-----|-------|
-| `UConnNavy` | `#000E2F` | Primary color, backgrounds, headers |
-| `UConnAccent` | `#CC0000` | Red accent, alerts, underlines |
-| `UConnBlack` | `#222222` | Body text |
-| `UConnGray` | `#666666` | Secondary text |
-| `UConnLightGray` | `#F5F5F5` | Block body background |
+| Name | Hex | PANTONE | Usage |
+|------|-----|---------|-------|
+| `UConnNavy` | `#000E2F` | 289 | Primary color, backgrounds, headers |
+| `UConnWhite` | `#FFFFFF` | — | Text on dark backgrounds |
+| `UConnGray` | `#7C878E` | 430 | Secondary text |
+| `UConnAccent` | `#CC0000` | — | Red accent, alerts, underlines |
+| `UConnDarkBlue` | `#1A2959` | — | Title, thank you, questions slide backgrounds |
+| `UConnRoyalBlue` | `#013ECD` | 2728 | Royal Blue, available for custom use |
+| `UConnLightGray` | `#F0F1F2` | — | Block body background |
+| `UConnBlack` | `#222222` | — | Body text |
 
 ## Building
 
